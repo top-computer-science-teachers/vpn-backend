@@ -23,4 +23,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function connections()
+    {
+        return $this->hasMany(Connection::class, 'user_id', 'id');
+    }
+
 }

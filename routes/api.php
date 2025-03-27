@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/create-user', [UserController::class, 'createUser']);
 
-Route::prefix('auth:sanctum')->group(function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('/get-user', [UserController::class, 'getUser']);
 
@@ -16,4 +16,5 @@ Route::prefix('auth:sanctum')->group(function () {
         Route::post('/create', [ConnectionController::class, 'createConnection']);
         Route::post('/cancel', [ConnectionController::class, 'cancelConnection']);
     });
+
 });

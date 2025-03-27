@@ -12,7 +12,15 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return response()->json(['data' => $user], 200);
+        $res = [
+            'id' => $user->id,
+            'firstname' => $user->firstname,
+            'username' => $user->username,
+            'tg_id' => $user->tg_id,
+            'connections' => $user->connections ?? [],
+        ];
+
+        return response()->json(['data' => $res], 200);
     }
 
     public function createUser(Request $request)
